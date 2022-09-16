@@ -89,4 +89,3 @@ while(escolha != 6):
         print('\n Opção inválida!\n')
     input('\nPressione ENTER para continuar')
 #-------------------------FIM--------------------------------
-#teste
