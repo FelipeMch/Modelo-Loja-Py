@@ -52,40 +52,74 @@ def menu_itens():
 
 #Armazena o input do usuário nas variáveis principais de quantidade e valor
 def registrar_item(item):
+    global qt, valor
     if item == 1:
-        qt = calca_qt
-        valor = calca_valor
+        qt = 20
+        valor = 112.00
     elif item == 2:
-        qt = camisa_qt
-        valor = camisa_valor
+        qt = 18
+        valor = 95.00
     elif item == 3:
-        qt = bermuda_qt
-        valor = bermuda_valor
+        qt = 23
+        valor = 49.90
     elif item == 4:
-        qt = saia_qt
-        valor = saia_valor
+        qt = 12
+        valor = 169.00
     elif item == 5:
-        qt = blusa_qt
-        valor = blusa_valor
+        qt = 9
+        valor = 120.00
     elif item == 6:
-        qt = moletom_qt
-        valor = moletom_valor
+        qt = 4
+        valor = 135.00
     elif item == 7:
-        qt = meia_qt
-        valor = meia_valor
+        qt = 17
+        valor = 12.99
     elif item == 8:
-        qt = tenis_qt
-        valor = tenis_valor
+        qt = 8
+        valor = 183.00
     elif item == 9:
-        qt = bota_qt
-        valor = bota_valor
+        qt = 3
+        valor = 219.90
     return qt, valor
-    
+
+#Registra a venda    
 def registrar_venda():
     os.system('cls' if os.name == 'nt' else 'clear')
+    global qt, valor
     valor_venda = qt_desejada*valor
     confirmacao = input('\nO valor total da venda foi R${:.2f}. Deseja confirmar? s/n: '.format(valor_venda)).lower()
-    return confirmacao
+    if confirmacao == 's':
+        qt = qt - qt_desejada
+        print('Venda registrada com sucesso!')
+        print('O estoque agora é de {} unidades.'.format(qt))
+    return qt, valor_venda
+
+#Repõe o estoque
+def repor_estoque():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    global qt
+    qt_repor = int(input('Quantas unidades deseja repor? :'))
+    qt = qt + qt_repor
+    print('O estoque agora é de {} unidades.'.format(qt))
+    return qt
+
+
+#Mostra o estoque atual
+def mostrar_estoque():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    global qt, valor
+    print('\n..:: ESTOQUE ::..\n')
+    print('PRODUTO   |   QUANTIDADE  |   VALOR UNITÁRIO |   VALOR TOTAL')
+    print('Calça     | {} unidades   |  R${:.2f}        |   R${:.2f}'.format(calca_qt, calca_valor, calca_qt*calca_valor))
+    print('Camisa    | {} unidades   |  R${:.2f}        |   R${:.2f}'.format(camisa_qt, camisa_valor, camisa_qt*camisa_valor))
+    print('Bermuda   | {} unidades   |  R${:.2f}        |   R${:.2f}'.format(bermuda_qt, bermuda_valor, bermuda_qt*bermuda_valor))
+    print('Saia      | {} unidades   |  R${:.2f}        |   R${:.2f}'.format(saia_qt, saia_valor, saia_qt*saia_valor))
+    print('Blusa     | {} unidades   |  R${:.2f}        |   R${:.2f}'.format(blusa_qt, blusa_valor, blusa_qt*blusa_valor))
+    print('Moletom   | {} unidades   |  R${:.2f}        |   R${:.2f}'.format(moletom_qt, moletom_valor, moletom_qt*moletom_valor))
+    print('Meia      | {} unidades   |  R${:.2f}        |   R${:.2f}'.format(meia_qt, meia_valor, meia_qt*meia_valor))
+    print('Tênis     | {} unidades   |  R${:.2f}        |   R${:.2f}'.format(tenis_qt, tenis_valor, tenis_qt*tenis_valor))
+    print('Bota      | {} unidades   |  R${:.2f}        |   R${:.2f}'.format(bota_qt, bota_valor, bota_qt*bota_valor))
+    input('\nPressione ENTER para continuar')
 
 #Loop de execução do programa
 if __name__ == '__main__':
@@ -104,17 +138,30 @@ if __name__ == '__main__':
                 while (selecao != 0):
                     selecao = menu_itens()
                     if selecao != 0:    
-                        qt, valor = registrar_item(selecao)
                         qt_desejada = int(input('\nInsira a quantidade de itens desejados: '))
-
+                        qt, valor = registrar_item(selecao)
                         #Valida se quantidade selecionada está disponível em estoque
-                        while (qt_desejada > qt):
-                            while (qt_desejada > 0):
-                                qt_desejada = int(input('\nEstoque insuficiente, a quantidade de itens disponíveis é {}.\nInsira a quantidade desejada ou insira 0 para cancelar: '.format(qt)))
+                        while (qt_desejada > qt and qt_desejada > 0):                           
+                            qt_desejada = int(input('\nEstoque insuficiente, a quantidade de itens disponíveis é {}.\nInsira a quantidade desejada ou insira 0 para cancelar: '.format(qt)))
                         registrar_venda()        
                     else:
                         print('RETORNANDO...')            
                         input('\nDigite ENTER para continuar\n')            
+        elif escolha == 2:
+            selecao = 11
+
+            os.system('cls' if os.name == 'nt' else 'clear')
+            while (selecao != 0):
+                selecao = menu_itens()
+                if selecao != 0:
+                    qt, valor = registrar_venda(selecao)
+                    repor_estoque()
+                else:
+                    print('RETORNANDO...')
+                    input('\nDigite ENTER para continuar\n')
+        elif escolha == 3:
+            mostrar_estoque()
+            input('\nPressione ENTER para continuar')
         elif escolha == 6:
             print('SAINDO...')
         else:
