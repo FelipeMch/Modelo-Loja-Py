@@ -1,5 +1,5 @@
 import os
-
+import time
 # Estoque e preços
 calca_valor = float(112.00)
 calca_qt = int(20)
@@ -106,6 +106,13 @@ def registrar_venda():
         if total_da_compra > maior_comprador:
             maior_comprador = total_da_compra
             cliente_maior_compra = nome
+    elif confirmacao == 'n':
+        os.system('cls' if os.name == 'nt' else 'clear')
+        return menu_itens
+    else:
+        print('Por favor, digite apenas s ou n')
+        time.sleep(2.5)
+        return registrar_venda()
             
     return qt, valor_venda
 
@@ -159,7 +166,11 @@ def mostrar_estoque():
     print('|  Tênis          | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(        tenis_qt, tenis_valor, tenis_qt*tenis_valor, align='^', width='7'))
     print('|  Bota           | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(        bota_qt, bota_valor, bota_qt*bota_valor, align='^', width='7'))
 
-
+def mostrar_compras():
+    global selecao
+    
+    
+    
 def maior_compra():
     global cliente_maior_compra, total_da_compra
     print('O Cliente que fez a maior compra foi o cliente {}' .format (cliente_maior_compra))
@@ -195,6 +206,7 @@ if __name__ == '__main__':
                             '\nEstoque insuficiente, a quantidade de itens disponíveis é {}.\nInsira a quantidade desejada ou insira 0 para cancelar: '.format(qt)))
                     registrar_venda()
                     atualizar_estoque()
+                    
                 else:
                     print('RETORNANDO...')
                     input('\nDigite ENTER para continuar\n')
@@ -212,6 +224,9 @@ if __name__ == '__main__':
                     input('\nDigite ENTER para continuar\n')
         elif escolha == 3:
             mostrar_estoque()
+            input('\nPressione ENTER para continuar')
+        elif escolha == 4:
+            mostrar_compras()
             input('\nPressione ENTER para continuar')
         elif escolha == 5:
             maior_compra()
