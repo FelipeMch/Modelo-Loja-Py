@@ -1,5 +1,6 @@
 import os
 import time
+
 # Estoque e preços
 calca_valor = float(112.00)
 calca_qt = int(20)
@@ -20,9 +21,10 @@ tenis_qt = int(8)
 bota_valor = float(219.90)
 bota_qt = int(3)
 
-#Variavel Global
+#Variavel 
 maior_comprador = 0
 cliente_maior_compra = ''
+selecao_atual =0
 
 # Menu de seleção de função
 def menu():
@@ -52,6 +54,10 @@ def menu_itens():
     print('9 - Bota')
     print('0 - Retornar')
     item = int(input('\nInsira o item desejado: '))
+    if item < 0 or item > 9:
+        print('!!! NÚMERO INVÁLIDO !!! \n\n###### DIGITE NUMEROS QUE ESTÃO NO MENU ######')
+        time.sleep(3.5)
+        return menu_itens()
     return item
 
 # Armazena o input do usuário nas variáveis principais de quantidade e valor
@@ -165,11 +171,9 @@ def mostrar_estoque():
     print('|  Meia           | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(        meia_qt, meia_valor, meia_qt*meia_valor, align='^', width='7'))
     print('|  Tênis          | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(        tenis_qt, tenis_valor, tenis_qt*tenis_valor, align='^', width='7'))
     print('|  Bota           | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(        bota_qt, bota_valor, bota_qt*bota_valor, align='^', width='7'))
-
+    
 def mostrar_compras():
-    global selecao
-    
-    
+    print('print')
     
 def maior_compra():
     global cliente_maior_compra, total_da_compra
@@ -177,7 +181,7 @@ def maior_compra():
     print('Com o valor total da compra de R${:.2f}' .format (maior_comprador))
     #FALTA TABELA uma tabela com os itens comprados
     
-    
+
 
 
 # Loop de execução do programa
@@ -197,8 +201,7 @@ if __name__ == '__main__':
             while (selecao != 0):
                 selecao = menu_itens()
                 if selecao != 0:
-                    qt_desejada = int(
-                        input('\nInsira a quantidade de itens desejados: '))
+                    qt_desejada = int(input('\nInsira a quantidade de itens desejados: '))
                     qt, valor = registrar_item(selecao)
                     # Valida se quantidade selecionada está disponível em estoque
                     while (qt_desejada > qt and qt_desejada > 0):
