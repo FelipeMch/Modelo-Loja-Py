@@ -25,7 +25,7 @@ bota_qt = int(3)
 
 maior_comprador = 0
 cliente_maior_compra = ''
-
+totalcarrinho = 0
 # Menu de seleção de função
 
 def menu():
@@ -98,7 +98,7 @@ def registrar_item(item):
 
 def registrar_venda():
     os.system('cls' if os.name == 'nt' else 'clear')
-    global qt, valor, calca_qt, camisa_qt, bermuda_qt, saia_qt, blusa_qt, moletom_qt, meia_qt, tenis_qt, bota_qt, maior_comprador, cliente_maior_compra,nome, total_da_compra
+    global qt, valor, calca_qt, camisa_qt, bermuda_qt, saia_qt, blusa_qt, moletom_qt, meia_qt, tenis_qt, bota_qt, maior_comprador, cliente_maior_compra,nome, total_da_compra, valor_venda, totalcarrinho
     valor_venda = qt_desejada*valor
     confirmacao = input(
         '\nO valor total da venda foi R${:.2f}. Deseja confirmar? s/n: '.format(valor_venda)).lower()
@@ -108,6 +108,7 @@ def registrar_venda():
         print('O estoque agora é de {} unidades.'.format(qt))
         #Maior Compra
         total_da_compra = valor_venda
+        totalcarrinho=total_da_compra+totalcarrinho
         if total_da_compra > maior_comprador:
             maior_comprador = total_da_compra
             cliente_maior_compra = nome
@@ -201,6 +202,7 @@ if __name__ == '__main__':
             selecao = 11
             while (selecao != 0):
                 selecao = menu_itens()
+                
                 if selecao != 0:
                     qt_desejada = int(input('\nInsira a quantidade de itens desejados: '))
                     qt, valor = registrar_item(selecao)
@@ -211,10 +213,13 @@ if __name__ == '__main__':
                     registrar_venda()
                     atualizar_estoque()
                     
-                else:
+                else: 
+                    print('Valor total é de: R${}' .format(totalcarrinho))
                     print('RETORNANDO...')
-                    input('\nDigite ENTER para continuar\n')
-        elif escolha == 2:
+                    time.sleep(5.0)                                   
+                    input('\nDigite ENTER para Retornar\n')
+                    
+        elif escolha == 2: # Seleciona a função de repor o estoque
             selecao = 11
 
             os.system('cls' if os.name == 'nt' else 'clear')
@@ -223,19 +228,24 @@ if __name__ == '__main__':
                 if selecao != 0:
                     qt, valor = registrar_venda(selecao)
                     repor_estoque()
+                    
                 else:
                     print('RETORNANDO...')
                     input('\nDigite ENTER para continuar\n')
-        elif escolha == 3:
+                    
+        elif escolha == 3: # Seleciona a função de mostrar o estoque
             mostrar_estoque()
             input('\nPressione ENTER para continuar')
-        elif escolha == 4:
+            
+        elif escolha == 4: # Seleciona a função de mostrar compras
             mostrar_compras()
             input('\nPressione ENTER para continuar')
-        elif escolha == 5:
+            
+        elif escolha == 5: # Seleciona função de maior compra
             maior_compra()
             input('\nPressione ENTER para continuar')
-        elif escolha == 6:
+        elif escolha == 6: # sai do programa
             print('SAINDO...')
+            
         else:
             print('Opção inválida!')
