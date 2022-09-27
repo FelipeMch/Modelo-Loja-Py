@@ -1,6 +1,6 @@
 import os
 
-#Estoque e preços
+# Estoque e preços
 calca_valor = float(112.00)
 calca_qt = int(20)
 camisa_valor = float(95.00)
@@ -20,20 +20,24 @@ tenis_qt = int(8)
 bota_valor = float(219.90)
 bota_qt = int(3)
 
+#Variavel Global
+maior_comprador = 0
+cliente_maior_compra = ''
 
-#Menu de seleção de função
+# Menu de seleção de função
 def menu():
-  os.system('cls' if os.name == 'nt' else 'clear') 
-  print('\n..:: PONTO DE VENDA ::..\n')
-  print('1 - Registrar venda')
-  print('2 - Repor estoque')
-  print('3 - Mostrar estoque')
-  print('4 - Mostrar compras')
-  print('5 - Maior compra')
-  print('6 - Sair')
-  opcao = int(input('Escolha uma opção: '))
-  return opcao
-#Menu de seleção de produtos
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print('\n..:: PONTO DE VENDA ::..\n')
+    print('1 - Registrar venda')
+    print('2 - Repor estoque')
+    print('3 - Mostrar estoque')
+    print('4 - Mostrar compras')
+    print('5 - Maior compra')
+    print('6 - Sair')
+    opcao = int(input('Escolha uma opção: '))
+    return opcao
+# Menu de seleção de produtos
+
 
 def menu_itens():
     print('\n..:: PRODUTOS ::..\n')
@@ -50,7 +54,9 @@ def menu_itens():
     item = int(input('\nInsira o item desejado: '))
     return item
 
-#Armazena o input do usuário nas variáveis principais de quantidade e valor
+# Armazena o input do usuário nas variáveis principais de quantidade e valor
+
+
 def registrar_item(item):
     global qt, valor
     if item == 1:
@@ -82,16 +88,25 @@ def registrar_item(item):
         valor = bota_valor
     return qt, valor
 
-#Registra a venda    
+# Registra a venda
+
+
 def registrar_venda():
     os.system('cls' if os.name == 'nt' else 'clear')
-    global qt, valor, calca_qt, camisa_qt, bermuda_qt, saia_qt, blusa_qt, moletom_qt, meia_qt, tenis_qt, bota_qt
+    global qt, valor, calca_qt, camisa_qt, bermuda_qt, saia_qt, blusa_qt, moletom_qt, meia_qt, tenis_qt, bota_qt, maior_comprador, cliente_maior_compra,nome, total_da_compra
     valor_venda = qt_desejada*valor
-    confirmacao = input('\nO valor total da venda foi R${:.2f}. Deseja confirmar? s/n: '.format(valor_venda)).lower()
+    confirmacao = input(
+        '\nO valor total da venda foi R${:.2f}. Deseja confirmar? s/n: '.format(valor_venda)).lower()
     if confirmacao == 's':
         qt = qt - qt_desejada
         print('Venda registrada com sucesso!')
         print('O estoque agora é de {} unidades.'.format(qt))
+        #Maior Compra
+        total_da_compra = valor_venda
+        if total_da_compra > maior_comprador:
+            maior_comprador = total_da_compra
+            cliente_maior_compra = nome
+            
     return qt, valor_venda
 
 def atualizar_estoque():
@@ -116,7 +131,9 @@ def atualizar_estoque():
         bota_qt = qt
     return calca_qt, camisa_qt, bermuda_qt, saia_qt, blusa_qt, moletom_qt, meia_qt, tenis_qt, bota_qt
 
-#Repõe o estoque
+# Repõe o estoque
+
+
 def repor_estoque():
     os.system('cls' if os.name == 'nt' else 'clear')
     global qt
@@ -126,50 +143,61 @@ def repor_estoque():
     return qt
 
 
-#Mostra o estoque atual
+# Mostra o estoque atual
 def mostrar_estoque():
     os.system('cls' if os.name == 'nt' else 'clear')
     global qt, valor
     print('\n..:: ESTOQUE ::..\n')
     print('|     PRODUTO     |      QUANTIDADE      |    VALOR UNITÁRIO    |   VALOR TOTAL   |')
-    print('|  Calça          | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(calca_qt, calca_valor, calca_qt*calca_valor,align='^', width='7'))
-    print('|  Camisa         | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(camisa_qt, camisa_valor, camisa_qt*camisa_valor,align='^', width='7'))
-    print('|  Bermuda        | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(bermuda_qt, bermuda_valor, bermuda_qt*bermuda_valor,align='^', width='7'))
-    print('|  Saia           | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(saia_qt, saia_valor, saia_qt*saia_valor,align='^', width='7'))
-    print('|  Blusa          | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(blusa_qt, blusa_valor, blusa_qt*blusa_valor,align='^', width='7'))
-    print('|  Moletom        | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(moletom_qt, moletom_valor, moletom_qt*moletom_valor,align='^', width='7'))
-    print('|  Meia           | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(meia_qt, meia_valor, meia_qt*meia_valor,align='^', width='7'))
-    print('|  Tênis          | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(tenis_qt, tenis_valor, tenis_qt*tenis_valor,align='^', width='7'))
-    print('|  Bota           | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(bota_qt, bota_valor, bota_qt*bota_valor,align='^', width='7'))
-    input('\nPressione ENTER para continuar')
+    print('|  Calça          | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(        calca_qt, calca_valor, calca_qt*calca_valor, align='^', width='7'))
+    print('|  Camisa         | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(        camisa_qt, camisa_valor, camisa_qt*camisa_valor, align='^', width='7'))
+    print('|  Bermuda        | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(        bermuda_qt, bermuda_valor, bermuda_qt*bermuda_valor, align='^', width='7'))
+    print('|  Saia           | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(        saia_qt, saia_valor, saia_qt*saia_valor, align='^', width='7'))
+    print('|  Blusa          | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(        blusa_qt, blusa_valor, blusa_qt*blusa_valor, align='^', width='7'))
+    print('|  Moletom        | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(        moletom_qt, moletom_valor, moletom_qt*moletom_valor, align='^', width='7'))
+    print('|  Meia           | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(        meia_qt, meia_valor, meia_qt*meia_valor, align='^', width='7'))
+    print('|  Tênis          | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(        tenis_qt, tenis_valor, tenis_qt*tenis_valor, align='^', width='7'))
+    print('|  Bota           | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(        bota_qt, bota_valor, bota_qt*bota_valor, align='^', width='7'))
 
-#Loop de execução do programa
+
+def maior_compra():
+    global cliente_maior_compra, total_da_compra
+    print('O Cliente que fez a maior compra foi o cliente {}' .format (cliente_maior_compra))
+    print('Com o valor total da compra de R${:.2f}' .format (maior_comprador))
+    #FALTA TABELA uma tabela com os itens comprados
+    
+    
+
+
+# Loop de execução do programa
 if __name__ == '__main__':
     escolha = '0'
 
     while(escolha != 6):
         escolha = menu()
 
-        if escolha == 1: #Seleciona a função de registrar venda e solicita nome do usuário
-                nome = str(input('\nInsira seu nome: '))
-                os.system('cls' if os.name == 'nt' else 'clear')
-                print('Bem vindo, {}!'.format(nome))
-                
-                #Exibe o menu de seleção do produto
-                selecao = 11
-                while (selecao != 0):
-                    selecao = menu_itens()
-                    if selecao != 0:    
-                        qt_desejada = int(input('\nInsira a quantidade de itens desejados: '))
-                        qt, valor = registrar_item(selecao)
-                        #Valida se quantidade selecionada está disponível em estoque
-                        while (qt_desejada > qt and qt_desejada > 0):                           
-                            qt_desejada = int(input('\nEstoque insuficiente, a quantidade de itens disponíveis é {}.\nInsira a quantidade desejada ou insira 0 para cancelar: '.format(qt)))
-                        registrar_venda() 
-                        atualizar_estoque()     
-                    else:
-                        print('RETORNANDO...')            
-                        input('\nDigite ENTER para continuar\n')            
+        if escolha == 1:  # Seleciona a função de registrar venda e solicita nome do usuário
+            nome = str(input('\nInsira seu nome: '))
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print('Bem vindo, {}!'.format(nome))
+
+            # Exibe o menu de seleção do produto
+            selecao = 11
+            while (selecao != 0):
+                selecao = menu_itens()
+                if selecao != 0:
+                    qt_desejada = int(
+                        input('\nInsira a quantidade de itens desejados: '))
+                    qt, valor = registrar_item(selecao)
+                    # Valida se quantidade selecionada está disponível em estoque
+                    while (qt_desejada > qt and qt_desejada > 0):
+                        qt_desejada = int(input(
+                            '\nEstoque insuficiente, a quantidade de itens disponíveis é {}.\nInsira a quantidade desejada ou insira 0 para cancelar: '.format(qt)))
+                    registrar_venda()
+                    atualizar_estoque()
+                else:
+                    print('RETORNANDO...')
+                    input('\nDigite ENTER para continuar\n')
         elif escolha == 2:
             selecao = 11
 
@@ -185,7 +213,10 @@ if __name__ == '__main__':
         elif escolha == 3:
             mostrar_estoque()
             input('\nPressione ENTER para continuar')
+        elif escolha == 5:
+            maior_compra()
+            input('\nPressione ENTER para continuar')
         elif escolha == 6:
             print('SAINDO...')
         else:
-            print('Opção inválida!') 
+            print('Opção inválida!')
