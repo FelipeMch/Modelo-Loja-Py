@@ -21,12 +21,13 @@ tenis_qt = int(8)
 bota_valor = float(219.90)
 bota_qt = int(3)
 
-#Variavel 
+#Variavel
+
 maior_comprador = 0
 cliente_maior_compra = ''
-selecao_atual =0
 
 # Menu de seleção de função
+
 def menu():
     os.system('cls' if os.name == 'nt' else 'clear')
     print('\n..:: PONTO DE VENDA ::..\n')
@@ -38,8 +39,8 @@ def menu():
     print('6 - Sair')
     opcao = int(input('Escolha uma opção: '))
     return opcao
-# Menu de seleção de produtos
 
+# Menu de seleção de produtos
 
 def menu_itens():
     print('\n..:: PRODUTOS ::..\n')
@@ -61,7 +62,6 @@ def menu_itens():
     return item
 
 # Armazena o input do usuário nas variáveis principais de quantidade e valor
-
 
 def registrar_item(item):
     global qt, valor
@@ -96,7 +96,6 @@ def registrar_item(item):
 
 # Registra a venda
 
-
 def registrar_venda():
     os.system('cls' if os.name == 'nt' else 'clear')
     global qt, valor, calca_qt, camisa_qt, bermuda_qt, saia_qt, blusa_qt, moletom_qt, meia_qt, tenis_qt, bota_qt, maior_comprador, cliente_maior_compra,nome, total_da_compra
@@ -122,6 +121,8 @@ def registrar_venda():
             
     return qt, valor_venda
 
+# Atualizar o Estoque
+
 def atualizar_estoque():
     global calca_qt, camisa_qt, bermuda_qt, saia_qt, blusa_qt, moletom_qt, meia_qt, tenis_qt, bota_qt
     if selecao == 1:
@@ -146,7 +147,6 @@ def atualizar_estoque():
 
 # Repõe o estoque
 
-
 def repor_estoque():
     os.system('cls' if os.name == 'nt' else 'clear')
     global qt
@@ -157,6 +157,7 @@ def repor_estoque():
 
 
 # Mostra o estoque atual
+
 def mostrar_estoque():
     os.system('cls' if os.name == 'nt' else 'clear')
     global qt, valor
@@ -172,17 +173,17 @@ def mostrar_estoque():
     print('|  Tênis          | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(        tenis_qt, tenis_valor, tenis_qt*tenis_valor, align='^', width='7'))
     print('|  Bota           | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(        bota_qt, bota_valor, bota_qt*bota_valor, align='^', width='7'))
     
+#Mostrar Compras
 def mostrar_compras():
-    print('print')
-    
+    print('')
+
+#Mostrar Maior Compra
 def maior_compra():
     global cliente_maior_compra, total_da_compra
     print('O Cliente que fez a maior compra foi o cliente {}' .format (cliente_maior_compra))
     print('Com o valor total da compra de R${:.2f}' .format (maior_comprador))
     #FALTA TABELA uma tabela com os itens comprados
     
-
-
 
 # Loop de execução do programa
 if __name__ == '__main__':
