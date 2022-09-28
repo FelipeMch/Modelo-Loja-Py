@@ -333,30 +333,34 @@ def mostrar_estoque():
     global qt, valor
     print('\n..:: ESTOQUE ::..\n')
     print('|     PRODUTO     |      QUANTIDADE      |    VALOR UNITÁRIO    |   VALOR TOTAL   |')
-    print('|  Calça          | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(        calca_qt, calca_valor, calca_qt*calca_valor, align='^', width='7'))
-    print('|  Camisa         | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(        camisa_qt, camisa_valor, camisa_qt*camisa_valor, align='^', width='7'))
-    print('|  Bermuda        | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(        bermuda_qt, bermuda_valor, bermuda_qt*bermuda_valor, align='^', width='7'))
-    print('|  Saia           | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(        saia_qt, saia_valor, saia_qt*saia_valor, align='^', width='7'))
-    print('|  Blusa          | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(        blusa_qt, blusa_valor, blusa_qt*blusa_valor, align='^', width='7'))
-    print('|  Moletom        | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(        moletom_qt, moletom_valor, moletom_qt*moletom_valor, align='^', width='7'))
-    print('|  Meia           | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(        meia_qt, meia_valor, meia_qt*meia_valor, align='^', width='7'))
-    print('|  Tênis          | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(        tenis_qt, tenis_valor, tenis_qt*tenis_valor, align='^', width='7'))
-    print('|  Bota           | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(        bota_qt, bota_valor, bota_qt*bota_valor, align='^', width='7'))
+    print('|  Calça          | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(str(calca_qt).zfill(2), calca_valor, calca_qt*calca_valor, align='^', width='7'))
+    print('|  Camisa         | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(str(camisa_qt).zfill(2), camisa_valor, camisa_qt*camisa_valor, align='^', width='7'))
+    print('|  Bermuda        | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(str(bermuda_qt).zfill(2), bermuda_valor, bermuda_qt*bermuda_valor, align='^', width='7'))
+    print('|  Saia           | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(str(saia_qt).zfill(2), saia_valor, saia_qt*saia_valor, align='^', width='7'))
+    print('|  Blusa          | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(str(blusa_qt).zfill(2), blusa_valor, blusa_qt*blusa_valor, align='^', width='7'))
+    print('|  Moletom        | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(str(moletom_qt).zfill(2), moletom_valor, moletom_qt*moletom_valor, align='^', width='7'))
+    print('|  Meia           | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(str(meia_qt).zfill(2), meia_valor, meia_qt*meia_valor, align='^', width='7'))
+    print('|  Tênis          | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(str(tenis_qt).zfill(2), tenis_valor, tenis_qt*tenis_valor, align='^', width='7'))
+    print('|  Bota           | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(str(bota_qt).zfill(2), bota_valor, bota_qt*bota_valor, align='^', width='7'))
     input('\nDigite ENTER para continuar\n')
     
 #Mostrar Compras
 def mostrar_compras():
     global total_mostrar_compras
     global selecao
-    print("\n..:: Mostrar compras ::..\n")
-    for x in range(1,10):
-        selecao = x
-        print("Produto:",nome_produto())
-        print("Vendidos:",compras())
-        # print("Valor total: R${:.2f}\n".format(compras_produto() * valor_produto()))
-    print("\nValor total das compras: R${:.2f}".format(total_mostrar_compras))
+    print("\n..:: MOSTRAR COMPRAS ::..\n")
+    print('|     PRODUTO     |  QUANTIDADE COMPRADA  |  QUANTIDADE  ESTOQUE  |    VALOR UNITÁRIO    |   VALOR TOTAL   | TOTAL COMPRAS |')
+    print('|  Calça          | {:{align}{width}} unidades      | {:{align}{width}} unidades      |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |###############|'.format(str(compras_1).zfill(2),str(calca_qt).zfill(2), calca_valor, calca_qt*calca_valor, align='^', width='7'))
+    print('|  Camisa         | {:{align}{width}} unidades      | {:{align}{width}} unidades      |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |###############|'.format(str(compras_2).zfill(2),str(camisa_qt).zfill(2), camisa_valor, camisa_qt*camisa_valor, align='^', width='7'))
+    print('|  Bermuda        | {:{align}{width}} unidades      | {:{align}{width}} unidades      |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |###############|'.format(str(compras_3).zfill(2),str(bermuda_qt).zfill(2), bermuda_valor, bermuda_qt*bermuda_valor, align='^', width='7'))
+    print('|  Saia           | {:{align}{width}} unidades      | {:{align}{width}} unidades      |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |###############|'.format(str(compras_4).zfill(2),str(saia_qt).zfill(2), saia_valor, saia_qt*saia_valor, align='^', width='7'))
+    print('|  Blusa          | {:{align}{width}} unidades      | {:{align}{width}} unidades      |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |###############|'.format(str(compras_5).zfill(2),str(blusa_qt).zfill(2), blusa_valor, blusa_qt*blusa_valor, align='^', width='7'))
+    print('|  Moletom        | {:{align}{width}} unidades      | {:{align}{width}} unidades      |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |###############|'.format(str(compras_6).zfill(2),str(moletom_qt).zfill(2), moletom_valor, moletom_qt*moletom_valor, align='^', width='7'))
+    print('|  Meia           | {:{align}{width}} unidades      | {:{align}{width}} unidades      |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |###############|'.format(str(compras_7).zfill(2),str(meia_qt).zfill(2), meia_valor, meia_qt*meia_valor, align='^', width='7'))
+    print('|  Tênis          | {:{align}{width}} unidades      | {:{align}{width}} unidades      |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |###############|'.format(str(compras_8).zfill(2),str(tenis_qt).zfill(2), tenis_valor, tenis_qt*tenis_valor, align='^', width='7'))
+    print('|  Bota           | {:{align}{width}} unidades      | {:{align}{width}} unidades      |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |###############|'.format(str(compras_9).zfill(2),str(bota_qt).zfill(2), bota_valor, bota_qt*bota_valor, align='^', width='7'))
+    print('|  TOTAL COMPRAS  |########################################################################################|   R${:{align}{width}.2f}   |'.format(total_mostrar_compras, align='^', width='7'))                    
     input("\n\nPressione ENTER para continuar.")
-    input('\nDigite ENTER para continuar\n')
 
 #Mostrar Maior Compra
 def maior_compra():
