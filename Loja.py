@@ -22,13 +22,86 @@ bota_valor = float(219.90)
 bota_qt = int(3)
 
 #Variavel
-
 maior_comprador = 0
 cliente_maior_compra = ''
 totalcarrinho = 0
-total_da_compra=0
-# Menu de seleção de função
+total_da_compra =0
+total_compras = 0
+total_mostrar_compras=  0 
+compras_1 = 0
+compras_2 = 0
+compras_3 = 0
+compras_4 = 0
+compras_5 = 0
+compras_6 = 0
+compras_7 = 0
+compras_8 = 0
+compras_9 = 0
 
+global selecao
+
+# FUNÇÕES PARA MOSTRAR COMPRAS
+def compras_produto():
+    if selecao == 1:
+        return compras_1
+    elif selecao == 2:
+        return compras_2
+    elif selecao == 3:
+        return compras_3
+    elif selecao == 4:
+        return compras_4
+    elif selecao == 5:
+        return compras_5
+    elif selecao == 6:
+        return compras_6
+    elif selecao == 7:
+        return compras_7
+    elif selecao == 8:
+        return compras_8
+    elif selecao == 9:
+        return compras_9
+    
+def valor_produto():
+    if selecao == 1:
+        return 112.00
+    elif selecao == 2:
+        return 95.00
+    elif selecao == 3:
+        return 49.90
+    elif selecao == 4:
+        return 169.00
+    elif selecao == 5:
+        return 120.00
+    elif selecao == 6:
+        return 135.00
+    elif selecao == 7:
+        return 12.99
+    elif selecao == 8:
+        return 183.00
+    elif selecao == 9:
+        return 219.90
+    
+def nome_produto():
+    if selecao == 1:
+        return "calça"
+    elif selecao == 2:
+        return "camisa"
+    elif selecao == 3:
+        return "bermuda"
+    elif selecao == 4:
+        return "saia"
+    elif selecao == 5:
+        return "blusa"
+    elif selecao == 6:
+        return "moletom"
+    elif selecao == 7:
+        return "meia"
+    elif selecao == 8:
+        return "tênis"
+    elif selecao == 9:
+        return "bota"
+    
+# Menu de seleção de função
 
 def menu():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -64,7 +137,7 @@ def menu_itens():
     return item
 
 def exibir_menu_selecao():
-    global qt_desejada,nome
+    global qt_desejada,nome, selecao
     nome = str(input('\nInsira seu nome: '))
     os.system('cls' if os.name == 'nt' else 'clear')
     print('Bem vindo, {}!'.format(nome))
@@ -82,14 +155,14 @@ def exibir_menu_selecao():
                 else:
                     return 0
             registrar_venda()
+            compras_feitas()
             atualizar_estoque(selecao)
-                    
+                                
         else: 
             global totalcarrinho
             print('Valor total é de: R${}' .format(totalcarrinho))
             print('RETORNANDO...')
-            totalcarrinho=0
-            time.sleep(2.0)                                   
+            totalcarrinho=0                                   
             input('\nDigite ENTER para Retornar\n')
             
 def exibir_menu_repor():
@@ -140,11 +213,59 @@ def registrar_item(item):
         valor = bota_valor
     return qt, valor
 
+def compras():
+    if selecao == 1:
+        return compras_1
+    elif selecao == 2:
+        return compras_2
+    elif selecao == 3:
+        return compras_3
+    elif selecao == 4:
+        return compras_4
+    elif selecao == 5:
+        return compras_5
+    elif selecao == 6:
+        return compras_6
+    elif selecao == 7:
+        return compras_7
+    elif selecao == 8:
+        return compras_8
+    elif selecao == 9:
+        return compras_9
+
+def compras_feitas():
+    global compras_1,compras_2,compras_3,compras_4,compras_5,compras_6,compras_7,compras_8,compras_9,qt_desejada
+    if selecao == 1:
+        compras_1 += qt_desejada
+    elif selecao == 2:
+        compras_2 += qt_desejada
+        return compras_2
+    elif selecao == 3:
+        compras_3 += qt_desejada
+        return compras_3
+    elif selecao == 4:
+        compras_4 += qt_desejada
+        return compras_4
+    elif selecao == 5:
+        compras_5 += qt_desejada
+        return compras_5
+    elif selecao == 6:
+        compras_6 += qt_desejada
+        return compras_6
+    elif selecao == 7:
+        compras_7 += qt_desejada
+        return compras_7
+    elif selecao == 8:
+        compras_8 += qt_desejada
+        return compras_8
+    elif selecao == 9:
+        compras_9 += qt_desejada
+        return compras_9   
 # Registra a venda
 
 def registrar_venda():
     os.system('cls' if os.name == 'nt' else 'clear')
-    global qt,qt_desejada,total_da_compra, calca_qt, camisa_qt, bermuda_qt, saia_qt, blusa_qt, moletom_qt, meia_qt, tenis_qt, bota_qt, maior_comprador, cliente_maior_compra,nome, total_da_compra, valor_venda, totalcarrinho
+    global qt,qt_desejada,total_da_compra, calca_qt, camisa_qt, bermuda_qt, saia_qt, blusa_qt, moletom_qt, meia_qt, tenis_qt, bota_qt, maior_comprador, cliente_maior_compra,nome, total_da_compra, valor_venda, totalcarrinho,total_mostrar_compras
     valor_venda = qt_desejada*valor
     confirmacao = input(
         '\nO valor total da venda foi R${:.2f}. Deseja confirmar? s/n: '.format(valor_venda)).lower()
@@ -155,6 +276,7 @@ def registrar_venda():
         #Maior Compra
         total_da_compra = valor_venda
         totalcarrinho=total_da_compra+totalcarrinho
+        total_mostrar_compras=total_da_compra+total_mostrar_compras
         if totalcarrinho > maior_comprador:
             maior_comprador = totalcarrinho
             cliente_maior_compra = nome
@@ -221,9 +343,19 @@ def mostrar_estoque():
     print('|  Tênis          | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(        tenis_qt, tenis_valor, tenis_qt*tenis_valor, align='^', width='7'))
     print('|  Bota           | {:{align}{width}} unidades     |  R${:{align}{width}.2f}           |   R${:{align}{width}.2f}     |'.format(        bota_qt, bota_valor, bota_qt*bota_valor, align='^', width='7'))
     input('\nDigite ENTER para continuar\n')
+    
 #Mostrar Compras
 def mostrar_compras():
-    print('')
+    global total_mostrar_compras
+    global selecao
+    print("\n..:: Mostrar compras ::..\n")
+    for x in range(1,10):
+        selecao = x
+        print("Produto:",nome_produto())
+        print("Vendidos:",compras())
+        # print("Valor total: R${:.2f}\n".format(compras_produto() * valor_produto()))
+    print("\nValor total das compras: R${:.2f}".format(total_mostrar_compras))
+    input("\n\nPressione ENTER para continuar.")
     input('\nDigite ENTER para continuar\n')
 
 #Mostrar Maior Compra
@@ -237,7 +369,7 @@ def maior_compra():
 
 # Loop de execução do programa
 if __name__ == '__main__':
-    escolha = '0'
+    escolha = 0
 
     while(escolha != 6):
         escolha = menu()
