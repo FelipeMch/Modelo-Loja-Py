@@ -325,6 +325,21 @@ def repor_estoque():
     print('O estoque agora é de {} unidades.'.format(qt))
     return qt
 
+def exibir_menu_repor_estoque():
+    global qt,valor
+    selecao = 11
+
+    while (selecao != 0):
+        selecao = menu_itens()
+        if selecao != 0:
+            qt, valor = registrar_item(selecao)
+            repor_estoque()
+            atualizar_estoque(selecao)
+                    
+        else:
+            print('RETORNANDO...')
+            input('\nDigite ENTER para continuar\n')
+    
 
 # Mostra o estoque atual
 
@@ -382,18 +397,7 @@ if __name__ == '__main__':
             exibir_menu_selecao() # Exibe o menu de seleção do produto
                     
         elif escolha == 2: # Seleciona a função de repor o estoque
-            selecao = 11
-
-            while (selecao != 0):
-                selecao = menu_itens()
-                if selecao != 0:
-                    qt, valor = registrar_item(selecao)
-                    repor_estoque()
-                    atualizar_estoque(selecao)
-                    
-                else:
-                    print('RETORNANDO...')
-                    input('\nDigite ENTER para continuar\n')
+            exibir_menu_repor_estoque()
                     
         elif escolha == 3: # Seleciona a função de mostrar o estoque
             mostrar_estoque()
