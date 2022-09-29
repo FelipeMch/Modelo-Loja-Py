@@ -261,6 +261,7 @@ def compras_feitas():
     elif selecao == 9:
         compras_9 += qt_desejada
         return compras_9   
+    
 # Registra a venda
 
 def registrar_venda():
@@ -379,11 +380,30 @@ def mostrar_compras():
 
 #Mostrar Maior Compra
 def maior_compra():
-    global cliente_maior_compra, total_da_compra
+    os.system('cls' if os.name == 'nt' else 'clear')
+    global cliente_maior_compra, total_da_compra, compras_1,compras_2,compras_3,compras_4,compras_5,compras_6,compras_7,compras_8,compras_9
     print('O Cliente que fez a maior compra foi o cliente {}' .format (cliente_maior_compra))
-    print('Com o valor total da compra de R${:.2f}' .format (maior_comprador))
+    print('\nCom o valor total da compra de R${:.2f}' .format (maior_comprador))
+    if compras_1 > 0:
+        print('\nCalça: {}' .format(compras_1))
+    if compras_2 > 0:
+        print('\nCamisa: {}' .format(compras_2))
+    if compras_3 > 0:
+        print('\nBermuda: {}' .format(compras_3))  
+    if compras_4 > 0:
+        print('\nSaia: {}' .format(compras_4))  
+    if compras_5 > 0:
+        print('\nBlusa: {}' .format(compras_5))  
+    if compras_6 > 0:
+        print('\nMoletom: {}' .format(compras_6))  
+    if compras_7 > 0:
+        print('\nMeia: {}' .format(compras_7))  
+    if compras_8 > 0:
+       print('\nTênis: {}' .format(compras_8))  
+    if compras_9 > 0:
+        print('\nBota: {}' .format(compras_9)) 
+        
     input('\nDigite ENTER para retornar\n')
-    #FALTA TABELA uma tabela com os itens comprados
     
 
 # Loop de execução do programa
