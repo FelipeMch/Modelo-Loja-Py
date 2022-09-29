@@ -382,7 +382,18 @@ if __name__ == '__main__':
             exibir_menu_selecao() # Exibe o menu de seleção do produto
                     
         elif escolha == 2: # Seleciona a função de repor o estoque
-            exibir_menu_repor()
+            selecao = 11
+
+            while (selecao != 0):
+                selecao = menu_itens()
+                if selecao != 0:
+                    qt, valor = registrar_item(selecao)
+                    repor_estoque()
+                    atualizar_estoque(selecao)
+                    
+                else:
+                    print('RETORNANDO...')
+                    input('\nDigite ENTER para continuar\n')
                     
         elif escolha == 3: # Seleciona a função de mostrar o estoque
             mostrar_estoque()
